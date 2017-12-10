@@ -1,6 +1,9 @@
 # we are going to take eucledian distance between different posts to find out the nearest.
-
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
 import scipy as sp
+import cPickle as pickle
 
 
 # function to calculate eucleadian distance between two arrays
@@ -38,13 +41,15 @@ class StemmedTfidfVectorizer(TfidfVectorizer):
 import os, fnmatch
 
 # loading datasets from 20 news
-total_docs = []
-for root, dirnames, filenames in os.walk("../Data/20_newsgroups"):
-    for filename in fnmatch.filter(filenames, "*"):
-        total_docs.append(os.path.join(root, filename))
+#total_docs = []
+#for root, dirnames, filenames in os.walk("../Data/20_newsgroups"):
+#    for filename in fnmatch.filter(filenames, "*"):
+#        total_docs.append(os.path.join(root, filename))
+#
+#posts = [open(os.path.join(f)).read() for f in total_docs]
 
-posts = [open(os.path.join(f)).read() for f in total_docs]
-
+#pickle.dump(posts, open("post_dataset.pkl", "wb"))
+posts = pickle.load(open("post_dataset.pkl", "rb"))
 #from sklearn.feature_extraction.text import CountVectorizer
 
 # Count vectorizer will count the frequency of words in each blog and then will try to find out similarity between two bags on basis of
@@ -61,9 +66,7 @@ print (num_features)
 
 #print(vectorizer.get_feature_names())
 
-test_post = "To center the data (make it have zero mean and unit standard error), you subtract the mean and then divide the result by the standard deviation. x′=x−μσ You do that on the training set of data. But then you have to apply the same transformation to your testing set (e.g. in cross-validation), or to newly obtained examples before forecast. But you have to use the same two parameters μ and σ \
-(values) that you used for centering the training set. Hence, every sklearns fit() just calculates the parameters (e.g. μ and σ in case of StandardScaler) and saves them as an internal objects state. Afterwards, you can call its transform() method to apply the transformation to a particular set of examples. fit_transform() joins these two steps and is used for the initial fitting of parameters on the training set x" \
-            ", but it also returns a transformed x′. Internally, it just calls first fit() and then transform() on the same data."
+test_post = "To center the data (make it have zero mean and unit standard error), you subtract the mean and then divide the result by "
 test_post_vec = vectorizer.transform([test_post])
 # print(test_post_vec)
 #print(test_post_vec.toarray())
