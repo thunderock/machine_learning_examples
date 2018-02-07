@@ -1,9 +1,9 @@
 import sys
-reload(sys)
+
 sys.setdefaultencoding('utf8')
 from nltk.corpus import names
 from nltk.stem import WordNetLemmatizer
-import cPickle as pkl
+import _pickle as pkl
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.decomposition import NMF
@@ -23,7 +23,7 @@ for post in raw_posts:
 
 
 transformed = cv.fit_transform(posts)
-nmf = NMF(n_components=100, )
+#nmf = NMF(n_components=100, )
 
 
 

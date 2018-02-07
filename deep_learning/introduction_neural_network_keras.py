@@ -10,9 +10,9 @@ from keras.optimizers import SGD
 
 (X_train, y_train), (X_test, y_test) = mnist.load_data()
 
-print X_train.shape  # these are the training pixels
+print(X_train.shape)  # these are the training pixels
 
-print y_train.shape  # this is labelled data
+print(y_train.shape)  # this is labelled data
 
 X_train = X_train.reshape(60000, 784).astype('float32')
 X_test = X_test.reshape(10000, 784).astype('float32')
